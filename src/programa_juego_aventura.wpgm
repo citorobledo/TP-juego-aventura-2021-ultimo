@@ -1,0 +1,16 @@
+import wollok.game.*
+import nivel_bloques.*
+import elementos.*
+import nivel_llaves.*
+
+program juego_aventura {
+
+	game.title("Oh qué aventura")
+	game.height(16)
+	game.width(15)
+	game.boardGround("fondoBlanco.png")
+	
+	nivelBloques.configurate()
+	
+	game.start()
+}

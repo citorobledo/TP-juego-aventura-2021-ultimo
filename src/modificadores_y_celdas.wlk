@@ -4,6 +4,7 @@ import nivel_bloques.*
 import utilidades.*
 import wollok.game.*
 import elementos.*
+import indicadores.*
 
 class ModificadoresPollo
 {
@@ -59,83 +60,31 @@ class CeldaSorpersa
 {
 	var property image = "celda_sorpresa.png"
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
-	var property estado = "desactivado"
-	var property arriba = game.addVisual(new CeldaAdyasentesDeLaSorpresa(position = position.up(1), sorpresa = self))
-	var property abajo = game.addVisual(new CeldaAdyasentesDeLaSorpresa(position = position.down(1), sorpresa = self))
-	var property izquierda = game.addVisual(new CeldaAdyasentesDeLaSorpresa(position = position.left(1), sorpresa = self))
-	var property derecha = game.addVisual(new CeldaAdyasentesDeLaSorpresa(position = position.right(1), sorpresa = self))
+	var property estado = "activo"
 	
-	method accionSorpresa()
-	{
-		const sorpresaAleatoria = sorpresas.listaDeSorpresas().anyOne()
-		sorpresaAleatoria.ejecutar()
+	method puedeMoverHacia(unaPosition) = game.getObjectsIn(unaPosition) == []
+	method sorpresa(){
+		return 
 	}
 	
-	method accion()
-	{
-		if (estado == "activado")
-		{	
-			estado = "desactivado"
-			image = "celdaByN.png"
-			self.accionSorpresa()
+	method accion(){
+		if (personajeSimple.vieneDesdeArriba() || 
+			personajeSimple.vieneDesdeAbajo() || 
+			personajeSimple.vieneDesdeLaIzquierda() || 
+			personajeSimple.vieneDesdeLaDerecha()){ 
+        if (estado == "activo"){	
+							personajeSimple.rebote()
+							estado = "desactivo"
+							image = "celdaByN.png"
+							personajeSimple.energia(personajeSimple.energia() + (20.randomUpTo(-9).roundUp()))
+							indicadorDeEnergia.indicar()
+				}
+				else{
+					personajeSimple.position(utilidadesParaJuego.unaPositionNoRepetida())
+				}
 		}
-		
-		else {personajeSimple.rebote()}
-	}
-	
-	
-}
-
-
-class CeldaAdyasentesDeLaSorpresa
-{
-	var property image = "celdaAzul.jpg"
-	var property position
-	var property sorpresa
-	
-	
-	method accion()
-	{
-		if (sorpresa.image() == "celda_sorpresa.png")
-		{
-			sorpresa.estado("activado") 
-			sorpresa.accion()
-		}
-
-	}
-
-}
-
-
-object sorpresas
-{
-	const property listaDeSorpresas = [quitaEnergia, agregaEnergia, teletransportar]
-}
-
-object quitaEnergia
-{
-	method ejecutar()
-	{
-		personajeSimple.energia(personajeSimple.energia() - 15)
 	}
 }
-
-object agregaEnergia
-{
-	method ejecutar()
-	{
-		personajeSimple.energia(personajeSimple.energia() + 30)
-	}
-}
-
-object teletransportar
-{
-	method ejecutar()
-	{
-		personajeSimple.position(utilidadesParaJuego.unaPositionNoRepetida())
-	}
-}
-
 
 class CeldaAdyasentesDelCofre
 {
@@ -146,7 +95,7 @@ class CeldaAdyasentesDelCofre
 	
 	method accion()
 	{
-		keyboard.p().onPressDo( { cofre.estado("activado") cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada() })
+		keyboard.a().onPressDo( { cofre.estado("activado") cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada() })
 	}
 
 }

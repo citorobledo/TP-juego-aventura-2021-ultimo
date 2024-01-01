@@ -31,8 +31,8 @@ object nivelLlaves {
 		
 		// fondo - es importante que sea el primer visual que se agregue
 		game.addVisual(new Fondo(image="fondoCompleto.png"))
-		game.addVisual(new CeldaSorpersa())
-		game.addVisual(new CeldaSorpersa())
+		//game.addVisual(new CeldaSorpersa())
+		//game.addVisual(new CeldaSorpersa())
 		
 		//indicadores
 		game.addVisualIn( indicadorDeEnergia, game.at(9,15))
@@ -41,32 +41,11 @@ object nivelLlaves {
 		indicadorDeLlaves.indicar()
 		
 		//Llaves, cofres y pollos
-		const c1 = new Cofre()
-		const c2 = new Cofre()
-		const c3 = new Cofre()
+		const elementos = [new Llave(),new Llave(),new Llave(), new Cofre(),new Cofre(),new Cofre(), new Pollo()]
 		
-		const l1 = new Llave()
-		const l2 = new Llave()
-		const l3 = new Llave()
+		elementos.forEach{ e => game.addVisual(e)}
 		
-		const p1 = new Pollo()
-		
-		const m1 = new Duplicador()
-		const m2 = new Reforzador()
-		const m3 = new Triplicador()	
-		const m4 = new Duplicador()
-		const m5 = new Reforzador()
-		const m6 = new Triplicador()
-		
-		game.addVisual(c1)
-		game.addVisual(c2)
-		game.addVisual(c3)
-		game.addVisual(l1)
-		game.addVisual(l2)
-		game.addVisual(l3)
-		game.addVisual(p1)
-		
-		listModificadores.addAll([m1, m2, m3, m4, m5, m6])
+		listModificadores.addAll([new Duplicador(),new Triplicador(),new Reforzador(),new Duplicador(),new Triplicador(),new Reforzador()])
 		listModificadores.forEach{ m => game.addVisual(m)}
 
 		//Monstruos

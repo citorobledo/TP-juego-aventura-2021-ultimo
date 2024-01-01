@@ -18,8 +18,9 @@ object indicadorDeEnergia
 	var property image = "energia.png"
 		
 		method indicar()
-		{		
-			game.addVisualIn(crearNumero.imagenNumero( personajeSimple.energia().div(10) ),  game.at(13,15))//decena
+		{
+			game.addVisualIn(crearNumero.imagenNumero( personajeSimple.energia().div(100) ),  game.at(12,15))//centena		
+			game.addVisualIn(crearNumero.imagenNumero( personajeSimple.energia().div(10) % 10),  game.at(13,15))//decena
 			game.addVisualIn(crearNumero.imagenNumero( personajeSimple.energia() % 10 ),  game.at(14,15)) //unidad
 		}
 		method accion(){}

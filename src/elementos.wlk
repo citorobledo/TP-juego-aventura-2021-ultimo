@@ -98,6 +98,7 @@ class Pollo
 		personajeSimple.comerPollo(self)
 	    //game.removeVisual(self)
 	    utilidadesParaJuego.eliminar(self)    // reemplaza al game.removeVisual(self)
+			indicadorDeEnergia.indicar()
 	    game.addVisual(new Pollo())
      }
 }

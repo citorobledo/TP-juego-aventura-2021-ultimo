@@ -16,46 +16,47 @@ object personajeSimple {
 		cantLlaves +=1
 		indicadorDeLlaves.indicar()
 		}
-    method up(){
+
+  method up(){
 		oldPosition = position
-        if (self.position().y() != game.height() -2 ){
-            self.position(self.position().up(1))
-            self.restarEnergia()
-            }
-    }
-    method down(){
-    	oldPosition = position
-        if (self.position().y() != 0 ){  	
-            self.position(self.position().down(1)) 
-            self.restarEnergia()
-            }
-    }
-    method left(){
-    	oldPosition = position
-        if (self.position().x() != 0 ){   	
-            self.position(self.position().left(1))
-            self.restarEnergia()
-            }
-    }
-    method right(){
-    	oldPosition = position
-        if (self.position().x() != game.width() -1 ){
-            self.position(self.position().right(1))
-            self.restarEnergia()
-            }
-    }
-    
-    method restaEnergiaPatada() {energia -= 6 indicadorDeEnergia.indicar()}
-    method vieneDesdeArriba() = oldPosition == position.up(1)
-		method vieneDesdeAbajo() = oldPosition == position.down(1)
-		method vieneDesdeLaIzquierda() = oldPosition == position.left(1)
-		method vieneDesdeLaDerecha() = oldPosition == position.right(1)
-		
-		method restarEnergia() { 
-			if (energia > 0){
-				energia = energia - 1}
-			else{self.perder()}
+    if (self.position().y() != game.height() -2 ){
+        self.position(self.position().up(1))
+        self.restarEnergia()
+			}
 		}
+  method down(){
+  	oldPosition = position
+      if (self.position().y() != 0 ){  	
+          self.position(self.position().down(1)) 
+          self.restarEnergia()
+        }
+  	}
+  method left(){
+  	oldPosition = position
+    if (self.position().x() != 0 ){   	
+        self.position(self.position().left(1))
+        self.restarEnergia()
+      }
+  	}
+  method right(){
+  	oldPosition = position
+    if (self.position().x() != game.width() -1 ){
+        self.position(self.position().right(1))
+        self.restarEnergia()
+      }
+  	}
+    
+  method restaEnergiaPatada(energ) {(energia -= energ) indicadorDeEnergia.indicar()}
+  method vieneDesdeArriba() = oldPosition == position.up(1)
+	method vieneDesdeAbajo() = oldPosition == position.down(1)
+	method vieneDesdeLaIzquierda() = oldPosition == position.left(1)
+	method vieneDesdeLaDerecha() = oldPosition == position.right(1)
+	
+	method restarEnergia() { 
+		if (energia > 0){
+			energia = energia - 1}
+		else{self.perder()}
+	}
 				
 	method perder() { nivelLlaves.perder() }	
 	method aplicarModificadorSiExiste(unPollo){
@@ -80,7 +81,6 @@ object personajeSimple {
 			}
 		else {self.right()}
 	}
-
 }
 	
 class Monstruo {

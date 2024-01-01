@@ -6,9 +6,7 @@ import utilidades.*
 import modificadores_y_celdas.*
 import indicadores.*
 	
-	
-class Caja 
-{
+class Caja {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	const property image = "caja.png"
 	
@@ -46,8 +44,7 @@ class Caja
    	
 }
 
-class Llave 
-{
+class Llave {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	var property image = "llave20x20.png"
 	
@@ -72,9 +69,7 @@ class Llave
      }	
 }     
 
-
-object puerta
-{
+object puerta{
 	const property position = game.center()
 	var property image = "puerta_abierta.png"
 	
@@ -85,9 +80,7 @@ object puerta
 	}
 }
 
-
-class Pollo
-{
+class Pollo{
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	var property image = "pollo50x50.png"
 	var property energia = 5
@@ -103,8 +96,7 @@ class Pollo
      }
 }
 
-class Cofre
-{
+class Cofre{
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	var property image = "cofre35x35.png"
 	var property estado = "desactivado"
@@ -112,30 +104,23 @@ class Cofre
 	var property abajo = game.addVisual(new CeldaAdyasentesDelCofre(position = position.down(1), cofre = self))
 	var property izquierda = game.addVisual(new CeldaAdyasentesDelCofre(position = position.left(1), cofre = self))
 	var property derecha = game.addVisual(new CeldaAdyasentesDelCofre(position = position.right(1), cofre = self))
-	
 		
-	method convertirCofreEnLlave() 
-	{
+	method convertirCofreEnLlave() {
 		self.image("llave20x20.png")
 	}
 	
-	method accion()
-	{
-		if (estado == "activado")
-		{
-			if(personajeSimple.cantLlaves() < 2)
-			{
+	method accion(){
+		if (estado == "activado"){
+			if(personajeSimple.cantLlaves() < 2){
 				personajeSimple.agregarLlave()
 				utilidadesParaJuego.eliminar(self)
 	   		 }
-			else if (personajeSimple.cantLlaves() < 3)
-			{
+			else if (personajeSimple.cantLlaves() < 3){
 				personajeSimple.agregarLlave()
 				utilidadesParaJuego.eliminar(self)
 	    		game.addVisual(puerta)
 	    	}
-	    	else if(personajeSimple.cantLlaves() >= 3)
-	    	{
+	    	else if(personajeSimple.cantLlaves() >= 3){
 	    		personajeSimple.agregarLlave()
 	    		utilidadesParaJuego.eliminar(self)
 	    	}
@@ -144,19 +129,14 @@ class Cofre
      }
 }
 
-
-object puertaNivelCajas
-{
+object puertaNivelCajas{
 	const property position = game.at(0,0)
 	var property image = "puerta_cerrada.png"
 	
 	method abrirPuerta() { image = "puerta_abierta.png" }
 	method cerrarPuerta() { image = "puerta_cerrada.png" }
-	
-	method accion()
-	{
-		if (nivelBloques.todasLasCajasEstanEnElDeposito() and image == "puerta_abierta.png")
-		{
+	method accion(){
+		if (nivelBloques.todasLasCajasEstanEnElDeposito() and image == "puerta_abierta.png"){
 			self.cerrarPuerta()
 			nivelBloques.terminar()
 		}

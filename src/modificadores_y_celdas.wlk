@@ -75,7 +75,7 @@ class CeldaAdyasentesDelCofre{
 	var property cofre
 	
 	method accion(){
-		keyboard.a().onPressDo( { cofre.estado("activado") cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada() })
+		keyboard.a().onPressDo( { cofre.estado("activado") cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada(3) })
 	}
 }
 

@@ -6,66 +6,49 @@ import wollok.game.*
 import elementos.*
 import indicadores.*
 
-class ModificadoresPollo
-{
+class ModificadoresPollo{
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	
 	method desaparecerModificador() {utilidadesParaJuego.eliminar(self)}
-	method accion()
-	{
+	method accion(){
 		self.asignarModificador()
 		self.desaparecerModificador()
 	}
 	
 	method modificarEnergiaDelPollo(unPollo)
 	
-	method asignarModificador() {personajeSimple.modificador(self)}
-	
-	
+	method asignarModificador() {personajeSimple.modificador(self)}	
 }
 
-class Duplicador inherits ModificadoresPollo
-{
+class Duplicador inherits ModificadoresPollo{
 	var property image = "duplicador.png"
-	
 	override method modificarEnergiaDelPollo(unPollo) {unPollo.energia(unPollo.energia() *2)}
 }
 
-class Reforzador inherits ModificadoresPollo
-{
-	var property image = "reforzador.png"
+class Triplicador inherits ModificadoresPollo{
+	var property image = "triplicador.png"
 	
-	override method modificarEnergiaDelPollo(unPollo)
-	{
+	override method modificarEnergiaDelPollo(unPollo){
+		if (personajeSimple.energia().even()) {unPollo.energia(unPollo.energia() *3)}
+			
+		else {unPollo.energia(unPollo.energia() *0)}
+	}
+}	
+
+class Reforzador inherits ModificadoresPollo{
+	var property image = "reforzador.png"
+	override method modificarEnergiaDelPollo(unPollo){
 		unPollo.energia(unPollo.energia() *2)
 		if (personajeSimple.energia() < 10) {personajeSimple.energia(personajeSimple.energia() +20)}	 
 	}
 }
 
-
-class Triplicador inherits ModificadoresPollo
-{
-	var property image = "triplicador.png"
-	
-	override method modificarEnergiaDelPollo(unPollo)
-	{
-		if (personajeSimple.energia().even()) {unPollo.energia(unPollo.energia() *3)}
-			
-		else {unPollo.energia(unPollo.energia() *0)}
-	}
-}
-	
-	
-class CeldaSorpersa
-{
+class CeldaSorpersa{
 	var property image = "celda_sorpresa.png"
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	var property estado = "activo"
 	
 	method puedeMoverHacia(unaPosition) = game.getObjectsIn(unaPosition) == []
-	method sorpresa(){
-		return 
-	}
 	
 	method accion(){
 		if (personajeSimple.vieneDesdeArriba() || 
@@ -86,17 +69,13 @@ class CeldaSorpersa
 	}
 }
 
-class CeldaAdyasentesDelCofre
-{
+class CeldaAdyasentesDelCofre{
 	var property image = "celdaAzul.jpg"
 	var property position
 	var property cofre
 	
-	
-	method accion()
-	{
+	method accion(){
 		keyboard.a().onPressDo( { cofre.estado("activado") cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada() })
 	}
-
 }
 

@@ -5,7 +5,7 @@ import nivel_llaves.*
 
 program juego_aventura {
 
-	game.title("Oh qué aventura")
+	game.title("El milonga game")
 	game.height(16)
 	game.width(15)
 	game.boardGround("fondoBlanco.png")

@@ -5,6 +5,7 @@ import utilidades.*
 import wollok.game.*
 import elementos.*
 import indicadores.*
+import sonidos.*
 
 class ModificadoresPollo{
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
@@ -63,6 +64,7 @@ class CeldaSorpersa{
 							indicadorDeEnergia.indicar()
 				}
 				else{
+					teleport.play()
 					personajeSimple.position(utilidadesParaJuego.unaPositionNoRepetida())
 				}
 		}

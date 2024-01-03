@@ -6,6 +6,7 @@ import utilidades.*
 import wollok.game.*
 import modificadores_y_celdas.*
 import indicadores.*
+import sonidos.*
 
 
 object nivelBloques
@@ -35,6 +36,12 @@ object nivelBloques
 		const elementos = [new CeldaSorpersa(), new CeldaSorpersa(), new CeldaSorpersa(), new Pollo()]
 		elementos.forEach{ e => game.addVisual(e)}
 		game.addVisual(personajeSimple)
+
+		// musica
+		const musica = game.sound("temardo.mp3")
+		musica.shouldLoop(true)
+		musica.volume(0.1)
+		game.schedule(100, { musica.play() })
 		
 		keyboard.up().onPressDo({personajeSimple.up()  indicadorDeEnergia.indicar() })
 		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() })
@@ -55,6 +62,7 @@ object nivelBloques
 	{
 		if (self.todasLasCajasEstanEnElDeposito()) { 
 			puertaNivelCajas.abrirPuerta() 
+			door_open.play()
 			}
 	}
 	
@@ -66,6 +74,7 @@ object nivelBloques
 	
 	method terminar() 
 	{
+		pasaste_nivel.play()
 		game.clear()
 		game.addVisual(new Fondo(image="fondoCompleto.png"))
 		game.addVisual(puertaNivelCajas)

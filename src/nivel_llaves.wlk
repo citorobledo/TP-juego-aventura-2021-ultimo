@@ -6,6 +6,7 @@ import nivel_bloques.*
 import utilidades.*
 import modificadores_y_celdas.*
 import indicadores.*
+import sonidos.*
 
 object nivelLlaves {
 	
@@ -85,6 +86,7 @@ object nivelLlaves {
 	}
 	
 	method perder() {
+		muerte_miusic.play()
 		//Limpia visuals, teclado, colisiones y acciones.
 		game.clear()
 		//Agregar el fondo, y algún visual para que no quede tan pelado.

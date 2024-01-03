@@ -5,6 +5,7 @@ import nivel_bloques.*
 import utilidades.*
 import modificadores_y_celdas.*
 import indicadores.*
+import sonidos.*
 	
 class Caja {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
@@ -76,6 +77,7 @@ object puerta{
 	method accion() 
 	{
 		image ="puerta_cerrada.png"
+		door_open.play()
 		nivelLlaves.ganar()
 	}
 }
@@ -107,6 +109,7 @@ class Cofre{
 		
 	method convertirCofreEnLlave() {
 		self.image("llave20x20.png")
+		holy.play()
 	}
 	
 	method accion(){

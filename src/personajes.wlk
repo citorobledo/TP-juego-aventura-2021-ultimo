@@ -2,6 +2,7 @@ import wollok.game.*
 import nivel_llaves.*
 import utilidades.*
 import indicadores.*
+import sonidos.*
 
 object personajeSimple {
 	var property position = game.at(0,0)
@@ -15,6 +16,7 @@ object personajeSimple {
 	method agregarLlave(){
 		cantLlaves +=1
 		indicadorDeLlaves.indicar()
+		agarrar_llave.play()
 		}
 
   method up(){
@@ -66,10 +68,13 @@ object personajeSimple {
 	}
 	
 	method comerPollo(unPollo){
+		agarrar.play()
+		comer.play()
 		energia = energia + unPollo.energia()
 	}
 	
 	method rebote(){
+		dmg.play()
 		if (self.vieneDesdeArriba()) { 
 			self.up()
 			}

@@ -10,7 +10,7 @@ import sonidos.*
 class ModificadoresPollo{
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	
-	method desaparecerModificador() {utilidadesParaJuego.eliminar(self)}
+	method desaparecerModificador() {utilidadesParaJuego.eliminar(self) prick.play()}
 	method accion(){
 		self.asignarModificador()
 		self.desaparecerModificador()
@@ -23,7 +23,7 @@ class ModificadoresPollo{
 
 class Duplicador inherits ModificadoresPollo{
 	var property image = "duplicador.png"
-	override method modificarEnergiaDelPollo(unPollo) {unPollo.energia(unPollo.energia() *2)}
+	override method modificarEnergiaDelPollo(unPollo) {unPollo.energia(unPollo.energia() *2) }
 }
 
 class Triplicador inherits ModificadoresPollo{
@@ -58,6 +58,7 @@ class CeldaSorpersa{
 			personajeSimple.vieneDesdeLaDerecha()){ 
         if (estado == "activo"){	
 							personajeSimple.rebote()
+							bit_noise.play()
 							estado = "desactivo"
 							image = "celdaByN.png"
 							personajeSimple.energia(personajeSimple.energia() + (20.randomUpTo(-9).roundUp()))

@@ -1,7 +1,32 @@
 import wollok.game.*
 
+object musica{
+    const musica = game.sound("temardo.mp3")
+    method play(){
+      musica.shouldLoop(true)
+		  musica.volume(0.3)
+		  game.schedule(100, { musica.play() })
+    }
 
+    method stop(){
+      musica.stop()
+    }
+		
+} 
 
+object musica2{
+    const musica = game.sound("random.mp3")
+    method play(){
+      musica.shouldLoop(true)
+      musica.volume(0.2)
+      game.schedule(100, { musica.play() })
+    }
+
+    method stop(){
+      musica.stop()
+    }
+    
+}
 object choque_bola {
 	
 	method play(){
@@ -59,14 +84,23 @@ object  comer{
 }
 
 object  dmg{
+  
   method play(){
-    game.sound("dmg.mp3").play()
+    const p = game.sound("dmg.mp3")
+    p.volume(0.4)
+    p.play()
     }
 }
 
 object  door_open{
   method play(){
     game.sound("door_open.mp3").play()
+    }
+}
+
+object door_close{
+  method play(){
+    game.sound("door_close.mp3").play()
     }
 }
 
@@ -97,5 +131,43 @@ object  random-mp3{
 object  temardo{
   method play(){
     game.sound("temardo.mp3").play()
+    }
+}
+
+object tiemblen{
+  const p = game.sound("tiemblen.mp3")
+  method play(){
+    p.play()
+    }
+  method stop(){
+    p.stop()
+    }
+}
+
+object bit_noise{
+  method play(){
+    game.sound("bit_noise.mp3").play()
+    }
+  }
+
+object  paso{
+  
+  method play(){
+    const p = game.sound("paso.mp3")
+    p.volume(0.1)
+    p.play()
+    }
+}
+
+object  arrastra{
+  
+  method play(){
+    game.sound("arrastra.mp3").play()
+    }
+}
+
+object  prick{
+  method play(){
+    game.sound("prick.mp3").play()
     }
 }

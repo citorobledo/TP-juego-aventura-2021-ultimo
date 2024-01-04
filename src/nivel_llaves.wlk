@@ -53,7 +53,7 @@ object nivelLlaves {
 		//game.onTick(2000, "movimiento1", { game.addVisual(self.crearMonstruo()) } )
 		//game.onTick(2000, "movimiento2", { game.addVisual(self.crearMonstruo()) } )
 		//game.onTick(2000, "movimiento3", { game.addVisual(self.crearMonstruo()) } )
-		
+		musica2.play()
 		// personaje, es importante que sea el último visual que se agregue
 		game.addVisual(personajeSimple)
 		
@@ -77,8 +77,10 @@ object nivelLlaves {
 			//Agregar el fondo, y algún visual para que no quede tan pelado.
 			game.addVisual(new Fondo(image="fondoCompleto.png"))
 			game.addVisual(puerta)
+		  
 			//Deja pasar un tiempo indicado en milisegundos y cambia de fondo.
 			game.schedule(2500, {game.clear()
+			musica2.stop()
 			game.addVisual(new Fondo(image="ganamos.png"))
 			//Deja pasar un tiempo indicado en milisegundos y fin del juego.
 			game.schedule(3000, {game.stop()})

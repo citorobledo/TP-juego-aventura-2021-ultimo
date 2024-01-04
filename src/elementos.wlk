@@ -15,28 +15,31 @@ class Caja {
 	{
         if (personajeSimple.vieneDesdeArriba())
         { 
-        	if (self.puedeMoverHacia(position.down(1))) { position = position.down(1)}
+        	if (self.puedeMoverHacia(position.down(1))) { 
+						position = position.down(1)
+						arrastra.play()
+						}
 	
         	else {personajeSimple.rebote()}
         }
         
         else if (personajeSimple.vieneDesdeAbajo())
         { 
-        	if (self.puedeMoverHacia(position.up(1))) { position = position.up(1) }
+        	if (self.puedeMoverHacia(position.up(1))) { position = position.up(1) arrastra.play()}
         		
         	else {personajeSimple.rebote()}
         }
         
         else if (personajeSimple.vieneDesdeLaIzquierda())
         { 
-        	if (self.puedeMoverHacia(position.right(1))) { position = position.right(1) }
+        	if (self.puedeMoverHacia(position.right(1))) { position = position.right(1) arrastra.play()}
         		
         	else {personajeSimple.rebote()}
         }
         
         else
         {
-        	if (self.puedeMoverHacia(position.left(1))) { position = position.left(1)}
+        	if (self.puedeMoverHacia(position.left(1))) { position = position.left(1) arrastra.play()}
         	else {personajeSimple.rebote()}
        	}
    	}
@@ -62,12 +65,14 @@ class Llave {
 		else if(personajeSimple.cantLlaves() < 3)
 		{
 			//game.removeVisual(self)
+			door_open.play()
 			personajeSimple.agregarLlave()
 			utilidadesParaJuego.eliminar(self)		 // reemplaza al game.removeVisual(self)
-	    		game.addVisual(puerta)
-	    }
-	    else{personajeSimple.agregarLlave() utilidadesParaJuego.eliminar(self) }
-     }	
+	    game.addVisual(puerta)
+					
+	  }
+	  else{personajeSimple.agregarLlave() utilidadesParaJuego.eliminar(self) }
+  }	
 }     
 
 object puerta{
@@ -76,8 +81,8 @@ object puerta{
 	
 	method accion() 
 	{
+		door_close.play()
 		image ="puerta_cerrada.png"
-		door_open.play()
 		nivelLlaves.ganar()
 	}
 }
@@ -91,11 +96,11 @@ class Pollo{
 	{
 		personajeSimple.aplicarModificadorSiExiste(self)
 		personajeSimple.comerPollo(self)
-	    //game.removeVisual(self)
-	    utilidadesParaJuego.eliminar(self)    // reemplaza al game.removeVisual(self)
-			indicadorDeEnergia.indicar()
-	    game.addVisual(new Pollo())
-     }
+	  //game.removeVisual(self)
+	  utilidadesParaJuego.eliminar(self)    // reemplaza al game.removeVisual(self)
+		indicadorDeEnergia.indicar()
+	  game.addVisual(new Pollo())
+  }
 }
 
 class Cofre{

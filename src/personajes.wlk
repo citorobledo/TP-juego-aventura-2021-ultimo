@@ -13,6 +13,7 @@ object personajeSimple {
 	var property modificador = null
 	
 	
+	
 	method agregarLlave(){
 		cantLlaves +=1
 		indicadorDeLlaves.indicar()
@@ -22,20 +23,24 @@ object personajeSimple {
   method up(){
 		oldPosition = position
     if (self.position().y() != game.height() -2 ){
+				paso.play()
         self.position(self.position().up(1))
         self.restarEnergia()
 			}
 		}
   method down(){
   	oldPosition = position
-      if (self.position().y() != 0 ){  	
+      if (self.position().y() != 0 ){  
+
+					paso.play()	
           self.position(self.position().down(1)) 
           self.restarEnergia()
         }
   	}
   method left(){
   	oldPosition = position
-    if (self.position().x() != 0 ){   	
+    if (self.position().x() != 0 ){   
+				paso.play()	
         self.position(self.position().left(1))
         self.restarEnergia()
       }
@@ -43,6 +48,7 @@ object personajeSimple {
   method right(){
   	oldPosition = position
     if (self.position().x() != game.width() -1 ){
+				paso.play()
         self.position(self.position().right(1))
         self.restarEnergia()
       }
@@ -74,7 +80,6 @@ object personajeSimple {
 	}
 	
 	method rebote(){
-		dmg.play()
 		if (self.vieneDesdeArriba()) { 
 			self.up()
 			}
@@ -85,6 +90,7 @@ object personajeSimple {
 			self.left()
 			}
 		else {self.right()}
+		dmg.play()
 	}
 }
 	

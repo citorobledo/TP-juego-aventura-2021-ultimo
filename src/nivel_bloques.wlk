@@ -38,10 +38,7 @@ object nivelBloques
 		game.addVisual(personajeSimple)
 
 		// musica
-		const musica = game.sound("temardo.mp3")
-		musica.shouldLoop(true)
-		musica.volume(0.1)
-		game.schedule(100, { musica.play() })
+		musica.play()
 		
 		keyboard.up().onPressDo({personajeSimple.up()  indicadorDeEnergia.indicar() })
 		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() })
@@ -74,9 +71,10 @@ object nivelBloques
 	
 	method terminar() 
 	{
-		pasaste_nivel.play()
+		tiemblen.play()
 		game.clear()
 		game.addVisual(new Fondo(image="fondoCompleto.png"))
+		door_close.play()
 		game.addVisual(puertaNivelCajas)
 		//game.addVisual(personajeSimple)
 		game.schedule(2500, 
@@ -87,8 +85,11 @@ object nivelBloques
 					{
 						game.clear()
 						nivelLlaves.configurate()
+						tiemblen.stop()
+						musica.stop()
 					})
 			})
+		
 	}
 }
 

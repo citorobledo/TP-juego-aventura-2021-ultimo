@@ -9,8 +9,7 @@ import indicadores.*
 import sonidos.*
 
 
-object nivelBloques
-{
+object nivelBloques{
 	const property listaCajas = []
 	const property listModificadores = []
 	
@@ -39,38 +38,40 @@ object nivelBloques
 
 		// musica
 		musica.play()
-		
-		keyboard.up().onPressDo({personajeSimple.up()  indicadorDeEnergia.indicar() })
-		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() })
-		keyboard.left().onPressDo({personajeSimple.left() indicadorDeEnergia.indicar() })
-		keyboard.right().onPressDo({personajeSimple.right() indicadorDeEnergia.indicar() })
+		//animacion personaje
+		var sprite = [ "player2.png", "player.png", "player3.png", "player.png"]
+		var sprite2 = [ "player2h.png", "player-h.png", "player3h.png", "player-h.png"]
+		keyboard.n().onPressDo({ personajeSimple.animar(sprite) })
+		keyboard.m().onPressDo({ personajeSimple.desanimar(sprite) })
+		keyboard.up().onPressDo({personajeSimple.up() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
+		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
+		keyboard.left().onPressDo({personajeSimple.left() indicadorDeEnergia.indicar() personajeSimple.animar(sprite2, 40)})
+		keyboard.right().onPressDo({personajeSimple.right() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
 	
 		
 		game.whenCollideDo(personajeSimple, { a => a.accion()} )
 		
-		//keyboard.n().onPressDo({ self.abrirPuertaSiEsUltimaCaja() })
+		
+
 		// puertaNivelCajas.
 		game.onTick(5000, "puerta",{self.abrirPuertaSiEsUltimaCaja()})
 		
 		keyboard.e().onPressDo({ self.terminar() })	
-	}
+		}
 	
-	method abrirPuertaSiEsUltimaCaja()
-	{
+	method abrirPuertaSiEsUltimaCaja(){
 		if (self.todasLasCajasEstanEnElDeposito()) { 
 			puertaNivelCajas.abrirPuerta() 
 			door_open.play()
 			}
-	}
+		}
 	
-	method todasLasCajasEstanEnElDeposito()
-	{
+	method todasLasCajasEstanEnElDeposito(){
 		zonaDeposito.posicionDepositoAncho()
 		return listaCajas.all{ c => zonaDeposito.posicionesDeposito().contains(c.position())}
-	}
+		}
 	
-	method terminar() 
-	{
+	method terminar(){
 		tiemblen.play()
 		game.clear()
 		game.addVisual(new Fondo(image="fondoCompleto.png"))
@@ -89,7 +90,6 @@ object nivelBloques
 						musica.stop()
 					})
 			})
-		
-	}
+		}
 }
 

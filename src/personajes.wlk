@@ -6,12 +6,12 @@ import sonidos.*
 
 object personajeSimple {
 	var property position = game.at(0,0)
-	const property image = "player.png"	
+	var property image = "player.png"	
 	var property oldPosition = null
 	var property cantLlaves = 0
 	var property energia = 150
 	var property modificador = null
-	
+	var index = 0
 	
 	
 	method agregarLlave(){
@@ -59,25 +59,24 @@ object personajeSimple {
 	method vieneDesdeAbajo() = oldPosition == position.down(1)
 	method vieneDesdeLaIzquierda() = oldPosition == position.left(1)
 	method vieneDesdeLaDerecha() = oldPosition == position.right(1)
-	
 	method restarEnergia() { 
 		if (energia > 0){
 			energia = energia - 1}
 		else{self.perder()}
-	}
+		}
 				
 	method perder() { nivelLlaves.perder() }	
 	method aplicarModificadorSiExiste(unPollo){
 		if (not (modificador == null)){
 			modificador.modificarEnergiaDelPollo(unPollo)
 		}
-	}
+		}
 	
 	method comerPollo(unPollo){
 		agarrar.play()
 		comer.play()
 		energia = energia + unPollo.energia()
-	}
+		}
 	
 	method rebote(){
 		if (self.vieneDesdeArriba()) { 
@@ -91,9 +90,28 @@ object personajeSimple {
 			}
 		else {self.right()}
 		dmg.play()
+		}
+
+	method animar(listaDeImagenes, velocidad){
+			game.onTick(velocidad,"animar", {self.setSigImagen(listaDeImagenes)})//listaDeImagenes es una lista de imagenes del personaje
+		}
+	method desanimar(){
+			game.removeTickEvent("animar")
+		}
+	method setSigImagen(listaDeImagenes){
+		if (index < listaDeImagenes.size()){
+			image = listaDeImagenes.get(index)
+			index += 1
+		} else {
+			index = 0
+			game.removeTickEvent("animar")
+			}
+		}	
+
+
 	}
-}
 	
+
 class Monstruo {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	const property image = "monstruo35x35.png"

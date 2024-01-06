@@ -58,10 +58,15 @@ object nivelLlaves {
 		game.addVisual(personajeSimple)
 		
 		//Restar energia del personaje e informar cuanta energia le queda
-		keyboard.up().onPressDo({personajeSimple.up() indicadorDeEnergia.indicar()})
-		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() })
-		keyboard.left().onPressDo({personajeSimple.left() indicadorDeEnergia.indicar()})
-		keyboard.right().onPressDo({personajeSimple.right()  indicadorDeEnergia.indicar()})
+		var sprite = [ "player2.png", "player.png", "player3.png", "player.png"]
+		var sprite2 = [ "player2h.png", "player-h.png", "player3h.png", "player-h.png"]
+		keyboard.n().onPressDo({ personajeSimple.animar(sprite, 100) })
+		keyboard.m().onPressDo({ personajeSimple.desanimar(sprite) })
+		keyboard.up().onPressDo({personajeSimple.up() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
+		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
+		keyboard.left().onPressDo({personajeSimple.left() indicadorDeEnergia.indicar() personajeSimple.animar(sprite2, 40)})
+		keyboard.right().onPressDo({personajeSimple.right() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
+	
 		
 		// este es para probar, no es necesario dejarlo
 		//keyboard.g().onPressDo({ self.ganar() })

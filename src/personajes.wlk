@@ -115,9 +115,28 @@ object personajeSimple {
 class Monstruo {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	const property image = "monstruo35x35.png"
-	const property ttl = game.schedule(2010, { utilidadesParaJuego.eliminar(self) } )
+	//const property ttl = game.schedule(2010, { utilidadesParaJuego.eliminar(self) } )
 		
 	method movimiento() {self.position(utilidadesParaJuego.unaPositionNoRepetida())}
-	method accion(){}
+	
+	method accion(){
+		var ubicacionPersonaje = personajeSimple.position()
+		self.mover(ubicacionPersonaje)
+		}
+
+	method mover(ubicacionPersonaje){
+		if (self.position().x() < ubicacionPersonaje.x()){
+			self.position(self.position().right(1))
+		}
+		else if (self.position().x() > ubicacionPersonaje.x()){
+			self.position(self.position().left(1))
+		}
+		else if (self.position().y() < ubicacionPersonaje.y()){
+			self.position(self.position().up(1))
+		}
+		else if (self.position().y() > ubicacionPersonaje.y()){
+			self.position(self.position().down(1))
+		}
+	}
 	method desaparecer(){utilidadesParaJuego.eliminar(self)}
 }

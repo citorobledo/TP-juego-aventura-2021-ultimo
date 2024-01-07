@@ -50,16 +50,22 @@ object nivelLlaves {
 		listModificadores.forEach{ m => game.addVisual(m)}
 
 		//Monstruos
-		//game.onTick(2000, "movimiento1", { game.addVisual(self.crearMonstruo()) } )
-		//game.onTick(2000, "movimiento2", { game.addVisual(self.crearMonstruo()) } )
-		//game.onTick(2000, "movimiento3", { game.addVisual(self.crearMonstruo()) } )
+		
+		var mou = new Monstruo()
+		game.addVisual(mou)
+		game.onTick(550, "monstruo",{mou.accion()})
+
+		var mou2 = new Monstruo()
+		game.addVisual(mou2)
+		game.onTick(800, "monstruo",{mou2.accion()})
+
 		musica2.play()
 		// personaje, es importante que sea el último visual que se agregue
 		game.addVisual(personajeSimple)
 		
 		//Restar energia del personaje e informar cuanta energia le queda
 		var sprite = [ "player2.png", "player.png", "player3.png", "player.png"]
-		var sprite2 = [ "player2h.png", "player-h.png", "player3h.png", "player-h.png"]
+		var sprite2 = [ "player-h2.png", "player-h.png", "player-h3.png", "player-h.png"]
 		keyboard.n().onPressDo({ personajeSimple.animar(sprite, 100) })
 		keyboard.m().onPressDo({ personajeSimple.desanimar(sprite) })
 		keyboard.up().onPressDo({personajeSimple.up() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})

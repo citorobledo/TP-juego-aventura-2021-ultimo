@@ -51,27 +51,29 @@ class Caja {
 class Llave {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	var property image = "llave20x20.png"
-	
-	method accion() 
-	{
-		if(personajeSimple.cantLlaves() < 2)
-		{
-			
-			personajeSimple.agregarLlave()
-			utilidadesParaJuego.eliminar(self)     // reemplaza al game.removeVisual(self)
-    		//game.removeVisual(self)
-	    }
-	    
-		else if(personajeSimple.cantLlaves() < 3)
-		{
-			//game.removeVisual(self)
-			door_open.play()
-			personajeSimple.agregarLlave()
-			utilidadesParaJuego.eliminar(self)		 // reemplaza al game.removeVisual(self)
-	    game.addVisual(puerta)
-					
-	  }
-	  else{personajeSimple.agregarLlave() utilidadesParaJuego.eliminar(self) }
+	var property esEnemigo = false
+
+	method rebote() {
+		//personajeSimple.rebote()
+	}
+	method accion(){
+		if(game.getObjectsIn(self.position()).size() > 1 && 
+			!game.getObjectsIn(self.position()).last().esEnemigo()){
+			if(personajeSimple.cantLlaves() < 2){
+				personajeSimple.agregarLlave()
+				game.removeVisual(self)     // reemplaza al game.removeVisual(self)
+	  	  }
+
+			else if(personajeSimple.cantLlaves() < 3){
+				door_open.play()
+				personajeSimple.agregarLlave()
+				game.removeVisual(self)		 // reemplaza al game.removeVisual(self)
+	  	  game.addVisual(puerta)
+	  		}
+	  	else{personajeSimple.agregarLlave() game.removeVisual(self) 
+				}
+			}
+		else { game.getObjectsIn(self.position()).last().rebote() }
   }	
 }     
 
@@ -111,30 +113,23 @@ class Cofre{
 	var property abajo = game.addVisual(new CeldaAdyasentesDelCofre(position = position.down(1), cofre = self))
 	var property izquierda = game.addVisual(new CeldaAdyasentesDelCofre(position = position.left(1), cofre = self))
 	var property derecha = game.addVisual(new CeldaAdyasentesDelCofre(position = position.right(1), cofre = self))
-		
-	method convertirCofreEnLlave() {
-		self.image("llave20x20.png")
-		holy.play()
-	}
+	var property esEnemigo = false	
 	
+	method convertirCofreEnLlave() { 
+			game.addVisual(new Llave(position = position))
+			holy.play()
+			game.removeVisual(self)
+			
+	}
+
 	method accion(){
-		if (estado == "activado"){
-			if(personajeSimple.cantLlaves() < 2){
-				personajeSimple.agregarLlave()
-				utilidadesParaJuego.eliminar(self)
-	   		 }
-			else if (personajeSimple.cantLlaves() < 3){
-				personajeSimple.agregarLlave()
-				utilidadesParaJuego.eliminar(self)
-	    		game.addVisual(puerta)
-	    	}
-	    	else if(personajeSimple.cantLlaves() >= 3){
-	    		personajeSimple.agregarLlave()
-	    		utilidadesParaJuego.eliminar(self)
-	    	}
-	    }
-	    else { personajeSimple.rebote() }
-     }
+		 game.getObjectsIn(self.position()).first().rebote()
+		 game.getObjectsIn(self.position()).last().rebote()
+	}
+
+	method rebote() {
+		//personajeSimple.rebote()
+	}
 }
 
 object puertaNivelCajas{
@@ -149,4 +144,5 @@ object puertaNivelCajas{
 			nivelBloques.terminar()
 		}
 	}
+	method rebote() {}
 }

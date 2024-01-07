@@ -12,6 +12,7 @@ object personajeSimple {
 	var property energia = 150
 	var property modificador = null
 	var index = 0
+	const property esEnemigo = false
 	
 	
 	method agregarLlave(){
@@ -108,35 +109,76 @@ object personajeSimple {
 			}
 		}	
 
-
+	method accion(){
+		
+		}
 	}
 	
 
 class Monstruo {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
-	const property image = "monstruo35x35.png"
+	const property image = "player-z.png"
+	const property esEnemigo = true
 	//const property ttl = game.schedule(2010, { utilidadesParaJuego.eliminar(self) } )
 		
-	method movimiento() {self.position(utilidadesParaJuego.unaPositionNoRepetida())}
-	
 	method accion(){
 		var ubicacionPersonaje = personajeSimple.position()
 		self.mover(ubicacionPersonaje)
+		if (self.position() == ubicacionPersonaje){
+			self.matar()
+			}
+		}
+
+	method detener(){
+		game.removeTickEvent("accion")
 		}
 
 	method mover(ubicacionPersonaje){
 		if (self.position().x() < ubicacionPersonaje.x()){
 			self.position(self.position().right(1))
+			self.gritar()
 		}
 		else if (self.position().x() > ubicacionPersonaje.x()){
 			self.position(self.position().left(1))
+			self.gritar()
 		}
 		else if (self.position().y() < ubicacionPersonaje.y()){
 			self.position(self.position().up(1))
+			self.gritar()
 		}
 		else if (self.position().y() > ubicacionPersonaje.y()){
 			self.position(self.position().down(1))
+			self.gritar()
 		}
-	}
-	method desaparecer(){utilidadesParaJuego.eliminar(self)}
+		}
+	
+	method gritar(){
+		var fraces = ["GRRRR", "TRABAJO","COMIDA","SALARIO DIGNO", "PARITARIAS", "VACACIONES", "JUBILACION", "SALUD", "EDUCACION", "VIVIENDA", "JUSTICIA", "LIBERTAD", "DEMOCRACIA", "IGUALDAD", "PAZ", "AMOR"]
+		game.say(self,fraces.anyOne())
+		//grito.play()
+		}
+	
+	method matar(){
+		personajeSimple.perder()
+		}
+	
+	method rebote(){
+		var ubicacionPersonaje = personajeSimple.position()
+		if (self.position().x() < ubicacionPersonaje.x()){
+			self.position(self.position().left(1))
+			self.gritar()
+		}
+		else if (self.position().x() > ubicacionPersonaje.x()){
+			self.position(self.position().right(1))
+			self.gritar()
+		}
+		else if (self.position().y() < ubicacionPersonaje.y()){
+			self.position(self.position().down(1))
+			self.gritar()
+		}
+		else if (self.position().y() > ubicacionPersonaje.y()){
+			self.position(self.position().up(1))
+			self.gritar()
+		}
+		}
 }

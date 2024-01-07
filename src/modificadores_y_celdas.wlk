@@ -48,29 +48,37 @@ class CeldaSorpersa{
 	var property image = "celda_sorpresa.png"
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	var property estado = "activo"
+	const property esEnemigo = false
 	
 	method puedeMoverHacia(unaPosition) = game.getObjectsIn(unaPosition) == []
-	
-	method accion(){
-		if (personajeSimple.vieneDesdeArriba() || 
-			personajeSimple.vieneDesdeAbajo() || 
-			personajeSimple.vieneDesdeLaIzquierda() || 
-			personajeSimple.vieneDesdeLaDerecha()){ 
-        if (estado == "activo"){	
-							personajeSimple.rebote()
-							bit_noise.play()
-							estado = "desactivo"
-							image = "celdaByN.png"
-							personajeSimple.energia(personajeSimple.energia() + (20.randomUpTo(-9).roundUp()))
-							indicadorDeEnergia.indicar()
+
+	method accion(){					
+		if(game.getObjectsIn(self.position()).size() > 1 && 
+			!game.getObjectsIn(self.position()).first().esEnemigo()){
+			if(personajeSimple.vieneDesdeArriba() || 
+				personajeSimple.vieneDesdeAbajo() || 
+				personajeSimple.vieneDesdeLaIzquierda() || 
+				personajeSimple.vieneDesdeLaDerecha()){ 
+      	 	if (estado == "activo"){
+						personajeSimple.rebote()	
+						bit_noise.play()
+						estado = "desactivo"
+						image = "celdaByN.png"
+						personajeSimple.energia(personajeSimple.energia() + (20.randomUpTo(-9).roundUp()))
+						indicadorDeEnergia.indicar()
+						}
+					else{
+						teleport.play()
+						personajeSimple.position(utilidadesParaJuego.unaPositionNoRepetida())
+					}
 				}
-				else{
-					teleport.play()
-					personajeSimple.position(utilidadesParaJuego.unaPositionNoRepetida())
+			}
+		else if(game.getObjectsIn(self.position()).size() > 1 && estado == "desactivo" &&
+						game.getObjectsIn(self.position()).first().esEnemigo()){
+			game.getObjectsIn(self.position()).first().position(utilidadesParaJuego.unaPositionNoRepetida())
 				}
 		}
 	}
-}
 
 class CeldaAdyasentesDelCofre{
 	var property image = "celdaAzul.jpg"
@@ -78,7 +86,8 @@ class CeldaAdyasentesDelCofre{
 	var property cofre
 	
 	method accion(){
-		keyboard.a().onPressDo( { cofre.estado("activado") cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada(3) })
+		keyboard.a().onPressDo( { cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada(2) })
+		
 	}
 }
 

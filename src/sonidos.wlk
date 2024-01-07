@@ -122,7 +122,7 @@ object  holy{
     }
 }
 
-object  random-mp3{
+object  randomMp3{
   method play(){
     game.sound("random-mp3.mp3").play()
     }

@@ -33,13 +33,13 @@ object nivelBloques{
 		listModificadores.forEach{ m => game.addVisual(m)}
 		
 		// enemigo
-		var mou = new Monstruo()
+		var mou = new Monstruo(image="player-grabois.png")
 		game.addVisual(mou)
 		game.onTick(800, "monstruo",{mou.accion()})
 
-		var mou2 = new Monstruo()
+		var mou2 = new Monstruo(image="player-massa.png")
 		game.addVisual(mou2)
-		game.onTick(550, "monstruo",{mou2.accion()})
+		game.onTick(550, "monstruo2",{mou2.accion()})
 
 		const elementos = [new CeldaSorpersa(), new CeldaSorpersa(), new CeldaSorpersa(), new Pollo()]
 		elementos.forEach{ e => game.addVisual(e)}
@@ -48,11 +48,11 @@ object nivelBloques{
 		
 		// musica
 		musica.play()
+
 		//animacion personaje
 		var sprite = [ "player2.png", "player.png", "player3.png", "player.png"]
 		var sprite2 = [ "player-h2.png", "player-h.png", "player-h3.png", "player-h.png"]
-		keyboard.n().onPressDo({ personajeSimple.animar(sprite) })
-		keyboard.m().onPressDo({ personajeSimple.desanimar(sprite) })
+		
 		keyboard.up().onPressDo({personajeSimple.up() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
 		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
 		keyboard.left().onPressDo({personajeSimple.left() indicadorDeEnergia.indicar() personajeSimple.animar(sprite2, 40)})
@@ -60,11 +60,13 @@ object nivelBloques{
 	
 		
 		game.whenCollideDo(personajeSimple, { a => a.accion()} )
+		game.whenCollideDo(mou, { a => a.accion()} )
+		game.whenCollideDo(mou2, { a => a.accion()} )
 		
 		
 
 		// puertaNivelCajas.
-		game.onTick(5000, "puerta",{self.abrirPuertaSiEsUltimaCaja()})
+		game.onTick(4500, "puerta",{self.abrirPuertaSiEsUltimaCaja()})
 		
 		keyboard.e().onPressDo({ self.terminar() })	
 		}

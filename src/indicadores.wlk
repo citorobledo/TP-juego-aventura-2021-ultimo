@@ -28,9 +28,22 @@ object indicadorDeEnergia
 	
 object indicadorDeLlaves{
 	var property image = "llaves.png"	
-	method indicar()
-		{	
+	method indicar(){	
 			game.addVisualIn(crearNumero.imagenNumero( personajeSimple.cantLlaves() ),  game.at(3,15))
 		}
-		method accion(){}
-}
+
+	method accion(){}
+  }
+
+object indicadorEnter{
+	var property image = "pres_enter.png"	
+	method indicar(){	
+			if(image == "pres_enter.png"){
+				image = "pres_enter2.png"
+				}
+			else if (image == "pres_enter2.png"){
+				image = "pres_enter3.png"
+				}
+			else{image = "pres_enter.png"}
+		}	
+	}

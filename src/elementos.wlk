@@ -9,10 +9,9 @@ import sonidos.*
 	
 class Caja {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
-	const property image = "caja.png"
+	const property image = "caja_voto.png"
 	
-	method accion()
-	{
+	method accion(){
         if (personajeSimple.vieneDesdeArriba())
         { 
         	if (self.puedeMoverHacia(position.down(1))) { 
@@ -46,7 +45,7 @@ class Caja {
    	
    	method puedeMoverHacia(unaPosition) = game.getObjectsIn(unaPosition) == []
    	
-}
+	}
 
 class Llave {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
@@ -74,36 +73,34 @@ class Llave {
 				}
 			}
 		else { game.getObjectsIn(self.position()).last().rebote() }
-  }	
-}     
+  	}	
+	}     
 
 object puerta{
 	const property position = game.center()
 	var property image = "puerta_abierta.png"
 	
-	method accion() 
-	{
+	method accion(){
 		door_close.play()
 		image ="puerta_cerrada.png"
 		nivelLlaves.ganar()
+		}
 	}
-}
 
 class Pollo{
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	var property image = "pollo50x50.png"
 	var property energia = 5
 	
-	method accion()
-	{
+	method accion(){
 		personajeSimple.aplicarModificadorSiExiste(self)
 		personajeSimple.comerPollo(self)
 	  //game.removeVisual(self)
 	  utilidadesParaJuego.eliminar(self)    // reemplaza al game.removeVisual(self)
 		indicadorDeEnergia.indicar()
 	  game.addVisual(new Pollo())
-  }
-}
+  	}
+	}
 
 class Cofre{
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
@@ -118,19 +115,18 @@ class Cofre{
 	method convertirCofreEnLlave() { 
 			game.addVisual(new Llave(position = position))
 			holy.play()
-			game.removeVisual(self)
-			
-	}
+			game.removeVisual(self)		
+		}
 
 	method accion(){
 		 game.getObjectsIn(self.position()).first().rebote()
 		 game.getObjectsIn(self.position()).last().rebote()
-	}
+		}
 
 	method rebote() {
 		//personajeSimple.rebote()
+		}
 	}
-}
 
 object puertaNivelCajas{
 	const property position = game.at(0,0)
@@ -142,7 +138,7 @@ object puertaNivelCajas{
 		if (nivelBloques.todasLasCajasEstanEnElDeposito() and image == "puerta_abierta.png"){
 			self.cerrarPuerta()
 			nivelBloques.terminar()
+			}
 		}
-	}
 	method rebote() {}
-}
+	}

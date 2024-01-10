@@ -101,21 +101,28 @@ object nivelLlaves {
 	}
 	
 	method perder() {
+		musica.stop()
 		muerte_miusic.play()
 		//Limpia visuals, teclado, colisiones y acciones.
 		game.clear()
 		//Agregar el fondo, y algún visual para que no quede tan pelado.
 		game.addVisual(new Fondo(image="fondoCompleto.png"))
 		//Deja pasar un tiempo indicado en milisegundos.
-		game.schedule(2500, {
+		game.schedule(1500, {
 			game.clear()
 			//cambio de fondo.
-			game.addVisual(new Fondo(image="perdimos750x750.png"))
+			game.addVisualIn(new Fondo(image="perdiste.png"),  game.at(1,0))
 			//Deja pasar un tiempo indicado en milisegundos.
 			game.schedule(3000, {
-				//Fin del juego
-				game.stop()
+				game.addVisualIn(indicadorEnter, game.at(5,3))
+				game.onTick(200, "enter", {indicadorEnter.indicar()})
+				
+				
+				keyboard.enter().onPressDo({
+					game.stop()
+					})
 			})
+			
 		})
 	}
 

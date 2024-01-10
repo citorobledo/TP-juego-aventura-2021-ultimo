@@ -13,7 +13,7 @@ object nivelBloques{
 	const property listaCajas = []
 	const property listModificadores = []
 	
-	method configurate(){
+	method configurate(){		
 		utilidadesParaJuego.posicionArbitraria()
 		
 		game.addVisual(new Fondo(image="fondoCompleto.png"))
@@ -93,7 +93,7 @@ object nivelBloques{
 		game.schedule(2500, 
 			{
 				game.clear()
-				game.addVisual(new Fondo(image="finNivel1.png"))
+				game.addVisual(new Fondo(image="finNivel1_milei.png", position=game.at(0,3)))
 				game.schedule(3000, 
 					{
 						game.clear()

@@ -111,8 +111,17 @@ object  teleport{
 }
 
 object  muerte_miusic{
+  var m = game.sound("muerte_miusic.mp3")
   method play(){
-    game.sound("muerte_miusic.mp3").play()
+    m.play()
+    }
+  
+  method stop(){
+    m.stop()
+    }
+
+  method played(){
+    game.sound("muerte_miusic.mp3").played()
     }
 }
 

@@ -166,19 +166,19 @@ class Monstruo {
 		var ubicacionPersonaje = personajeSimple.position()
 		if (self.position().x() < ubicacionPersonaje.x()){
 			self.position(self.position().left(1))
-			self.gritar()
+			
 		}
 		else if (self.position().x() > ubicacionPersonaje.x()){
 			self.position(self.position().right(1))
-			self.gritar()
+			
 		}
 		else if (self.position().y() < ubicacionPersonaje.y()){
 			self.position(self.position().down(1))
-			self.gritar()
+			
 		}
 		else if (self.position().y() > ubicacionPersonaje.y()){
 			self.position(self.position().up(1))
-			self.gritar()
+			
 		}
 		}
 }

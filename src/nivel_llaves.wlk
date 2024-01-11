@@ -115,7 +115,7 @@ object nivelLlaves {
 			//Deja pasar un tiempo indicado en milisegundos.
 			game.schedule(3000, {
 				game.addVisualIn(indicadorEnter, game.at(5,3))
-				game.onTick(200, "enter", {indicadorEnter.indicar()})
+				game.onTick(150, "enter", {indicadorEnter.indicar()})
 				
 				
 				keyboard.enter().onPressDo({

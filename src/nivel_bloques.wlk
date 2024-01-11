@@ -20,7 +20,7 @@ object nivelBloques{
 		game.addVisual(puertaNivelCajas)
 		
 		// indicadores
-		game.addVisualIn( indicadorDeEnergia, game.at(9,15))
+		game.addVisualIn( indicadorDeEnergia, game.at(8,15))
 		indicadorDeEnergia.indicar()
 		game.addVisualIn( indicadorDeLlaves, game.at(0,15))
 		indicadorDeLlaves.indicar()

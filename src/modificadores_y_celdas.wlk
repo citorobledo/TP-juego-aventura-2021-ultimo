@@ -45,14 +45,15 @@ class Reforzador inherits ModificadoresPollo{
 }
 
 class CeldaSorpersa{
-	var property image = "celda_sorpresa.png"
+	var property image = "portal_apagado.png"
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	var property estado = "activo"
 	const property esEnemigo = false
 	
 	method puedeMoverHacia(unaPosition) = game.getObjectsIn(unaPosition) == []
 
-	method accion(){					
+	method accion(){	
+
 		if(game.getObjectsIn(self.position()).size() > 1 && 
 			!game.getObjectsIn(self.position()).first().esEnemigo()){
 			if(personajeSimple.vieneDesdeArriba() || 
@@ -63,22 +64,41 @@ class CeldaSorpersa{
 						personajeSimple.rebote()	
 						bit_noise.play()
 						estado = "desactivo"
-						image = "celdaByN.png"
+						image = "portal_activado.png"
 						personajeSimple.energia(personajeSimple.energia() + (20.randomUpTo(-9).roundUp()))
 						indicadorDeEnergia.indicar()
 						}
 					else{
-						teleport.play()
+						game.onTick( 50, "teleport", {self.teleport_sprite()} )
 						personajeSimple.position(utilidadesParaJuego.unaPositionNoRepetida())
+						teleport.play()
 					}
 				}
 			}
 		else if(game.getObjectsIn(self.position()).size() > 1 && estado == "desactivo" &&
 						game.getObjectsIn(self.position()).first().esEnemigo()){
-			game.getObjectsIn(self.position()).first().position(utilidadesParaJuego.unaPositionNoRepetida())
+							game.getObjectsIn(self.position()).first().position(utilidadesParaJuego.unaPositionNoRepetida())
+							game.onTick( 50, "teleport", {self.teleport_sprite()} )
+							teleport.play()
+				}
+			}
+		
+		method teleport_sprite(){
+			if(image == "portal_activado.png"){
+				image = "portal_activado2.png"
+				}
+			else if (image == "portal_activado2.png"){
+				image = "portal_activado3.png"
+				}
+			else if (image == "portal_activado3.png"){
+				image = "portal_activado4.png"
+				}
+			else{
+				image = "portal_activado.png"
+				game.removeTickEvent("teleport")
 				}
 		}
-	}
+}
 
 class CeldaAdyasentesDelCofre{
 	var property image = "celdaAzul.jpg"

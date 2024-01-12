@@ -10,10 +10,11 @@ import sonidos.*
 class ModificadoresPollo{
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
 	
-	method desaparecerModificador() {utilidadesParaJuego.eliminar(self) prick.play()}
+	method desaparecerModificador() {utilidadesParaJuego.eliminar(self)}
 	method accion(){
 		self.asignarModificador()
 		self.desaparecerModificador()
+		prick.play()
 	}
 	
 	method modificarEnergiaDelPollo(unPollo)
@@ -24,6 +25,12 @@ class ModificadoresPollo{
 class Duplicador inherits ModificadoresPollo{
 	var property image = "duplicador.png"
 	override method modificarEnergiaDelPollo(unPollo) {unPollo.energia(unPollo.energia() *2) }
+
+	override method accion(){
+		self.asignarModificador()
+		self.desaparecerModificador()
+		motosierra.play() 
+	}
 }
 
 class Triplicador inherits ModificadoresPollo{

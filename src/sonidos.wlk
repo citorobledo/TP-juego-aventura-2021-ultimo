@@ -180,3 +180,9 @@ object  prick{
     game.sound("prick.mp3").play()
     }
 }
+
+object  motosierra{
+  method play(){
+    game.sound("motosierra.mp3").play()
+    }
+}

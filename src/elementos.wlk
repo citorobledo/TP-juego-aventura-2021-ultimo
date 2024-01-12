@@ -49,7 +49,7 @@ class Caja {
 
 class Llave {
 	var property position = utilidadesParaJuego.unaPositionNoRepetida()
-	var property image = "llave20x20.png"
+	var property image = "anio_mandato.png"
 	var property esEnemigo = false
 
 	method rebote() {
@@ -58,12 +58,12 @@ class Llave {
 	method accion(){
 		if(game.getObjectsIn(self.position()).size() > 1 && 
 			!game.getObjectsIn(self.position()).last().esEnemigo()){
-			if(personajeSimple.cantLlaves() < 2){
+			if(personajeSimple.cantLlaves() < 3){
 				personajeSimple.agregarLlave()
 				game.removeVisual(self)     // reemplaza al game.removeVisual(self)
 	  	  }
 
-			else if(personajeSimple.cantLlaves() < 3){
+			else if(personajeSimple.cantLlaves() < 4){
 				door_open.play()
 				personajeSimple.agregarLlave()
 				game.removeVisual(self)		 // reemplaza al game.removeVisual(self)

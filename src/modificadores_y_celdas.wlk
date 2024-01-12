@@ -20,7 +20,7 @@ class ModificadoresPollo{
 	method modificarEnergiaDelPollo(unPollo)
 	
 	method asignarModificador() {personajeSimple.modificador(self)}	
-}
+	}
 
 class Duplicador inherits ModificadoresPollo{
 	var property image = "duplicador.png"
@@ -31,7 +31,7 @@ class Duplicador inherits ModificadoresPollo{
 		self.desaparecerModificador()
 		motosierra.play() 
 	}
-}
+	}
 
 class Triplicador inherits ModificadoresPollo{
 	var property image = "triplicador.png"
@@ -41,7 +41,7 @@ class Triplicador inherits ModificadoresPollo{
 			
 		else {unPollo.energia(unPollo.energia() *0)}
 	}
-}	
+	}	
 
 class Reforzador inherits ModificadoresPollo{
 	var property image = "reforzador.png"
@@ -49,7 +49,7 @@ class Reforzador inherits ModificadoresPollo{
 		unPollo.energia(unPollo.energia() *2)
 		if (personajeSimple.energia() < 10) {personajeSimple.energia(personajeSimple.energia() +20)}	 
 	}
-}
+	}
 
 class CeldaSorpersa{
 	var property image = "portal_apagado.png"
@@ -105,7 +105,7 @@ class CeldaSorpersa{
 				game.removeTickEvent("teleport")
 				}
 		}
-}
+	}
 
 class CeldaAdyasentesDelCofre{
 	var property image = "celdaAzul.jpg"
@@ -116,5 +116,5 @@ class CeldaAdyasentesDelCofre{
 		keyboard.a().onPressDo( { cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada(2) })
 		
 	}
-}
+	}
 

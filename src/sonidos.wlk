@@ -11,19 +11,27 @@ object musica{
     method stop(){
       musica.stop()
     }
+
+    method played(){
+      return musica.played()
+    }
 		
 } 
 
 object musica2{
-    const musica = game.sound("random.mp3")
+    const musica2 = game.sound("random.mp3")
     method play(){
-      musica.shouldLoop(true)
-      musica.volume(0.2)
-      game.schedule(100, { musica.play() })
+      musica2.shouldLoop(true)
+      musica2.volume(0.2)
+      game.schedule(100, { musica2.play() })
     }
 
     method stop(){
-      musica.stop()
+      musica2.stop()
+    }
+
+    method played(){
+      return musica2.played()
     }
     
 }
@@ -35,7 +43,8 @@ object choque_bola {
 	
 }
 
-object 1up {
+
+object vida {
 	
 	method play(){
 		game.sound("1up.mp3").play()

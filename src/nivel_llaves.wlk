@@ -9,31 +9,14 @@ import indicadores.*
 import sonidos.*
 
 object nivelLlaves {
-	
-	
+
 	const property listModificadores = []
-	//Crear llave
-	//method crearLlave() = new Llave()
-	
-	//Crear pollo
-	//method crearPollo() = new Pollo()
-	
-	//Crear monstruo
-	//method crearMonstruo() = new Monstruo()
-	
-	//Crear cofres
-	//method crearCofre() = new Cofre()
-	
-	//Crear de manera aleatoria cofres con llave o llaves solas
-	//method crearAleatorio() = [self.crearCofre(), self.crearLlave()].anyOne()
 		
 	method configurate() {
 		utilidadesParaJuego.posicionArbitraria()
 		
 		// fondo - es importante que sea el primer visual que se agregue
 		game.addVisual(new Fondo(image="fondoCompleto.png"))
-		//game.addVisual(new CeldaSorpersa())
-		//game.addVisual(new CeldaSorpersa())
 		
 		//indicadores
 		game.addVisualIn( indicadorDeEnergia, game.at(9,15))
@@ -59,8 +42,13 @@ object nivelLlaves {
 		game.addVisual(mou2)
 		game.onTick(550, "monstruo2",{mou2.accion()})
 
+		var mou3 = new Monstruo(image="player-moreno.png")
+		game.addVisual(mou3)
+		game.onTick(400, "monstruo3",{mou3.accion()})
+
 		game.whenCollideDo(mou, { a => a.accion()} )
 		game.whenCollideDo(mou2, { a => a.accion()} )
+		game.whenCollideDo(mou3, { a => a.accion()} )
 
 		musica2.play()
 		// personaje, es importante que sea el último visual que se agregue
@@ -70,10 +58,6 @@ object nivelLlaves {
 		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() })
 		keyboard.left().onPressDo({personajeSimple.left() indicadorDeEnergia.indicar() })
 		keyboard.right().onPressDo({personajeSimple.right() indicadorDeEnergia.indicar() })
-	
-		
-		// este es para probar, no es necesario dejarlo
-		//keyboard.g().onPressDo({ self.ganar() })
 
 		// colisiones, acá sí hacen falta
 		game.onCollideDo(personajeSimple, {a=>a.accion()})
@@ -93,12 +77,20 @@ object nivelLlaves {
 			game.addVisual(new Fondo(image="ganamos.png", position=game.at(0,3)))
 			no_plata.play()
 			//Deja pasar un tiempo indicado en milisegundos y fin del juego.
-			game.schedule(5000, {game.stop()})
+			game.schedule(5500, {game.stop()})
 		})
 	}
-	
+	method parar_musica(){
+		if (musica.played()){
+			musica.stop()
+		}
+		else{
+			musica2.stop()
+		}
+		
+	}
 	method perder() {
-		musica.stop()
+		nivelLlaves.parar_musica()
 		muerte_miusic.play()
 		//Limpia visuals, teclado, colisiones y acciones.
 		game.clear()
@@ -113,8 +105,6 @@ object nivelLlaves {
 			game.schedule(3000, {
 				game.addVisualIn(indicadorEnter, game.at(5,3))
 				game.onTick(150, "enter", {indicadorEnter.indicar()})
-				
-				
 				keyboard.enter().onPressDo({
 					game.stop()
 					})

@@ -91,8 +91,9 @@ object nivelLlaves {
 			game.schedule(2500, {game.clear()
 			musica2.stop()
 			game.addVisual(new Fondo(image="ganamos.png", position=game.at(0,3)))
+			no_plata.play()
 			//Deja pasar un tiempo indicado en milisegundos y fin del juego.
-			game.schedule(4000, {game.stop()})
+			game.schedule(5000, {game.stop()})
 		})
 	}
 	

@@ -186,3 +186,9 @@ object  motosierra{
     game.sound("motosierra.mp3").play()
     }
 }
+
+object  no_plata{
+  method play(){
+    game.sound("no_plata.mp3").play()
+    }
+}

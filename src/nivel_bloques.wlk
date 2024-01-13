@@ -41,7 +41,7 @@ object nivelBloques{
 		game.addVisual(mou2)
 		game.onTick(550, "monstruo2",{mou2.accion()})
 
-		const elementos = [new CeldaSorpersa(), new CeldaSorpersa(), new CeldaSorpersa(), new Pollo()]
+		const elementos = [new CeldaSorpersa(), new CeldaSorpersa(), new CeldaSorpersa(), new Pollo(),  new CeldaSorpersa()]
 		elementos.forEach{ e => game.addVisual(e)}
 		game.addVisual(personajeSimple)
 
@@ -64,7 +64,7 @@ object nivelBloques{
 		// puertaNivelCajas.
 		game.onTick(4500, "puerta",{self.abrirPuertaSiEsUltimaCaja()})
 		
-		keyboard.e().onPressDo({ self.terminar() })	
+		keyboard.q().onPressDo({ self.terminar() })	
 		}
 	
 	method abrirPuertaSiEsUltimaCaja(){

@@ -25,7 +25,7 @@ object nivelLlaves {
 		indicadorDeLlaves.indicar()
 		
 		//Llaves, cofres y pollos
-		const elementos = [new Llave(), new Cofre(), new Llave(), new Llave()]
+		const elementos = [new Llave(), new Cofre(), new Llave(), new Llave(), new CeldaSorpersa(),  new CeldaSorpersa()]
 		
 		elementos.forEach{ e => game.addVisual(e)}
 		

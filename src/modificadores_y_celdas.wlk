@@ -113,7 +113,7 @@ class CeldaAdyasentesDelCofre{
 	var property cofre
 	
 	method accion(){
-		keyboard.a().onPressDo( { cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada(2) })
+		keyboard.space().onPressDo( { cofre.convertirCofreEnLlave() personajeSimple.restaEnergiaPatada(2) })
 		
 	}
 	}

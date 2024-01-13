@@ -31,6 +31,10 @@ object nivelBloques{
 		
 		listModificadores.addAll([new Duplicador(),new Triplicador(),new Reforzador(),new Duplicador(),new Triplicador(),new Reforzador()])
 		listModificadores.forEach{ m => game.addVisual(m)}
+
+		// dialogos de personajes
+		game.onTick(9000, "dialogo_personaje",{dialogos.personaje()})
+		game.onTick(15000, "dialogo_monstruo",{dialogos.monstruo()})
 		
 		// enemigo
 		var mou = new Monstruo(image="player-grabois.png")

@@ -187,3 +187,15 @@ class Monstruo {
 		}
 		}
 }
+
+object dialogos {
+	method personaje(){
+		var frases = [afuera_milei, mile1, milei_zurdos, milei_preparate] // lista de freses
+		return frases.anyOne().play()
+		}
+	method monstruo(){
+		var frases = [no_cristina, venis_joder, te_asustaste]
+		return frases.anyOne().play()
+		}
+	
+}

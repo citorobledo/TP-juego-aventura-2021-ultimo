@@ -201,3 +201,45 @@ object  no_plata{
     game.sound("no_plata.mp3").play()
     }
 }
+
+object  afuera_milei{
+  method play(){
+    game.sound("afuera_milei.mp3").play()
+    }
+}
+
+object  mile1{
+  method play(){
+    game.sound("mile1.mp3").play()
+    }
+}
+
+object  milei_zurdos{
+  method play(){
+    game.sound("milei_zurdos.mp3").play()
+    }
+}
+
+object  milei_preparate{
+  method play(){
+    game.sound("milei_preparate.mp3").play()
+    }
+}
+
+object  no_cristina{
+  method play(){
+    game.sound("no_cristina.mp3").play()
+ }
+}
+
+object  venis_joder{
+  method play(){
+    game.sound("venis_joder.mp3").play()
+    }
+}
+
+object  te_asustaste{
+  method play(){
+    game.sound("te_asustaste.mp3").play()
+    }
+}

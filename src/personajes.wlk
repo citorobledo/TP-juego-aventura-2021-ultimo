@@ -13,7 +13,9 @@ object personajeSimple {
 	var property modificador = null
 	var index = 0
 	const property esEnemigo = false
-	
+	//Restar energia del personaje e informar cuanta energia le queda
+	var sprite = [ "player2.png", "player.png", "player3.png", "player.png"]
+	var sprite2 = [ "player-h2.png", "player-h.png", "player-h3.png", "player-h.png"]
 	
 	method agregarLlave(){
 		cantLlaves +=1
@@ -25,6 +27,7 @@ object personajeSimple {
 		oldPosition = position
     if (self.position().y() != game.height() -2 ){
 				paso.play()
+				self.animar(sprite, 40)
         self.position(self.position().up(1))
         self.restarEnergia()
 			}
@@ -34,6 +37,7 @@ object personajeSimple {
       if (self.position().y() != 0 ){  
 
 					paso.play()	
+					self.animar(sprite, 40)
           self.position(self.position().down(1)) 
           self.restarEnergia()
         }
@@ -42,6 +46,7 @@ object personajeSimple {
   	oldPosition = position
     if (self.position().x() != 0 ){   
 				paso.play()	
+				self.animar(sprite2, 40)
         self.position(self.position().left(1))
         self.restarEnergia()
       }
@@ -50,6 +55,7 @@ object personajeSimple {
   	oldPosition = position
     if (self.position().x() != game.width() -1 ){
 				paso.play()
+				self.animar(sprite, 40)
         self.position(self.position().right(1))
         self.restarEnergia()
       }

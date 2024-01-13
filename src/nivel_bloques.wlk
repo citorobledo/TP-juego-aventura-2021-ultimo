@@ -48,15 +48,11 @@ object nivelBloques{
 		
 		// musica
 		musica.play()
-
-		//animacion personaje
-		var sprite = [ "player2.png", "player.png", "player3.png", "player.png"]
-		var sprite2 = [ "player-h2.png", "player-h.png", "player-h3.png", "player-h.png"]
 		
-		keyboard.up().onPressDo({personajeSimple.up() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
-		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
-		keyboard.left().onPressDo({personajeSimple.left() indicadorDeEnergia.indicar() personajeSimple.animar(sprite2, 40)})
-		keyboard.right().onPressDo({personajeSimple.right() indicadorDeEnergia.indicar() personajeSimple.animar(sprite, 40)})
+		keyboard.up().onPressDo({personajeSimple.up() indicadorDeEnergia.indicar() })
+		keyboard.down().onPressDo({personajeSimple.down() indicadorDeEnergia.indicar() })
+		keyboard.left().onPressDo({personajeSimple.left() indicadorDeEnergia.indicar() })
+		keyboard.right().onPressDo({personajeSimple.right() indicadorDeEnergia.indicar() })
 	
 		
 		game.whenCollideDo(personajeSimple, { a => a.accion()} )

@@ -14,8 +14,8 @@ object personajeSimple {
 	var index = 0
 	const property esEnemigo = false
 	//Restar energia del personaje e informar cuanta energia le queda
-	var sprite = [ "player2.png", "player.png", "player3.png", "player.png"]
-	var sprite2 = [ "player-h2.png", "player-h.png", "player-h3.png", "player-h.png"]
+	var sprite = [ "player2.png", "player.png", "player3.png"]
+	var sprite2 = [ "player-h2.png", "player-h.png", "player-h3.png"]
 	
 	method agregarLlave(){
 		cantLlaves +=1

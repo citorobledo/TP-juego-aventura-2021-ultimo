@@ -51,8 +51,8 @@ object nivelLlaves {
 		game.whenCollideDo(mou3, { a => a.accion()} )
 
 		// dialogos de personajes
-		game.onTick(9000, "dialogo_personaje",{dialogos.personaje()})
-		game.onTick(15000, "dialogo_monstruo",{dialogos.monstruo()})
+		game.onTick(11000, "dialogo_personaje",{dialogos.personaje()})
+		game.onTick(18000, "dialogo_monstruo",{dialogos.monstruo()})
 		
 		musica2.play()
 		// personaje, es importante que sea el último visual que se agregue

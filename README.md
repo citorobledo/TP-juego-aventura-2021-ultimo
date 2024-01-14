@@ -40,6 +40,7 @@ personajes del tablero:
 ## informacion suplementaria
 
 Mi nombre es javier robledo soy estudiante de la carrera de lic. en informatica. de la UNAHUR.
+email: javier.robledo@estudiantes.unahur.edu.ar
 
 
 La base de este juego es un trabajo practico de la materia PPO 1 de la universidad nacional de hurlingham.

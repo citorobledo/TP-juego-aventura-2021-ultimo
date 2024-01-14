@@ -37,9 +37,12 @@ personajes del tablero:
 - los mismos del nivel anterior. y se suma guillermo un personaje muy picante que te quiere matar.
 
 
-## Modificadores del efecto energético de los pollos
+## informacion suplementaria
+
+Mi nombre es javier robledo soy estudiante de la carrera de lic. en informatica. de la UNAHUR.
 
 
-Cuando el personaje se encuentra un modificador, lo incorpora, y el modificador desaparece del tablero. El modificador afecta a la ganancia de energía por los pollos que se encuentre _después_ de encontrarse con el modificador.  
-Cuando el personaje se encuentra con un segundo modificador, el nuevo reemplaza el viejo.
+La base de este juego es un trabajo practico de la materia PPO 1 de la universidad nacional de hurlingham.
+Al cual le agregue personajes y sonidos. mejore un poco las practicas de programacion, aunque hay mucho para mejorar.
+me parece que es un juego divertido, y tiene un cierto parecido con la realidad, jajaja. espero les guste.
 

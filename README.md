@@ -47,3 +47,6 @@ La base de este juego es un trabajo practico de la materia PPO 1 de la universid
 Al cual le agregue personajes y sonidos. mejore un poco las practicas de programacion, aunque hay mucho para mejorar.
 me parece que es un juego divertido, y tiene un cierto parecido con la realidad, jajaja. espero les guste.
 
+
+## imagenes del juego
+![alt-text](https://github.com/citorobledo/TP-juego-aventura-wollokGame-5/blob/main/assets/milonga_gif.gif)
